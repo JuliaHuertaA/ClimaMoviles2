@@ -26,4 +26,7 @@ struct ClimaModelo {
             return "41wkG24yDkL"
         }
     }
+    var temperaturaDecimal: String {
+        return String(format:"%1.f",temperaturaCelcius)
+    }
 }
