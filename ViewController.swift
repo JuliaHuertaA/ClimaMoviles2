@@ -12,6 +12,14 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
     func actualizarClima(clima: ClimaModelo) {
         print(clima.descripcionClima)
         print(clima.temperaturaDecimal)
+        
+    
+        DispatchQueue.main.async {
+            self.temperaturaLabel.text = clima.temperaturaDecimal
+            self.DescLabel.text = clima.descripcionClima
+            self.TempMinLabel.text = clima.temperaturaMinima
+            self.TempMaxLabel.text = clima.temperaturaMaxima
+        }
     }
     
     
@@ -21,6 +29,10 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
     @IBOutlet weak var ciudadLabel: UILabel!
     @IBOutlet weak var temperaturaLabel: UILabel!
     @IBOutlet weak var climaImageView: UIImageView!
+    @IBOutlet weak var TempMinLabel: UILabel!
+    @IBOutlet weak var TempMaxLabel: UILabel!
+    @IBOutlet weak var HumedadLabel: UILabel!
+    @IBOutlet weak var DescLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         climaManager.delegado = self

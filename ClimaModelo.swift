@@ -13,6 +13,9 @@ struct ClimaModelo {
     let nombreCiudad: String
     let descripcionClima: String
     let temperaturaCelcius: Double
+    let TemperaturaMin : Double
+    let TemperaturaMax : Double
+    
     
     var condicionClima: String{
         switch condicionID {
@@ -29,4 +32,11 @@ struct ClimaModelo {
     var temperaturaDecimal: String {
         return String(format:"%1.f",temperaturaCelcius)
     }
+    var temperaturaMinima: String {
+        return String(format:"%1.f",TemperaturaMin)
+    }
+    var temperaturaMaxima: String {
+        return String(format:"%1.f",TemperaturaMax)
+    }
+    
 }
