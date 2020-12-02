@@ -9,16 +9,56 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegate {
+    
+    func huboError(cualError : Error){
+        print(cualError.localizedDescription)
+        DispatchQueue.main.async {
+            self.ciudadLabel.text = cualError.localizedDescription
+            self.temperaturaLabel.text = ""
+            self.DescLabel.text = ""
+            self.TempMinLabel.text = ""
+            self.TempMaxLabel.text = ""
+            self.HumedadLabel.text = ""
+            self.Descripcion.text = ""
+            self.Minima.text = ""
+            self.Maxima.text = ""
+            self.Humedad.text = ""
+            self.centigrados1.text = ""
+            self.centigrados2.text = ""
+            self.porcentaje.text = ""
+            self.TempreaturaCLabel.text = ""
+            self.errorImageView.image = UIImage(named:"error.png")
+            self.climaImageView.image = UIImage(named: "")
+            
+        }
+        
+    }
+    
     func actualizarClima(clima: ClimaModelo) {
         print(clima.descripcionClima)
         print(clima.temperaturaDecimal)
+        print(clima.humedad)
+        print(clima.temperaturaMaxima)
+        print(clima.temperaturaMinima)
         
     
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {            self.Descripcion.text = "Descripción:"
+            self.Minima.text = "Mínima:"
+            self.Maxima.text = "Máxima:"
+            self.Humedad.text = "Humedad:"
+            self.centigrados1.text = "°C"
+            self.centigrados2.text = "°C"
+            self.porcentaje.text = "%"
+            self.TempreaturaCLabel.text = "°C"
+            
             self.temperaturaLabel.text = clima.temperaturaDecimal
             self.DescLabel.text = clima.descripcionClima
             self.TempMinLabel.text = clima.temperaturaMinima
             self.TempMaxLabel.text = clima.temperaturaMaxima
+            self.HumedadLabel.text = clima.humedad
+            self.climaImageView.image = UIImage(named: clima.condicionClima)
+            self.errorImageView.image = UIImage(named: "")
+            
         }
     }
     
@@ -33,10 +73,27 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
     @IBOutlet weak var TempMaxLabel: UILabel!
     @IBOutlet weak var HumedadLabel: UILabel!
     @IBOutlet weak var DescLabel: UILabel!
+    
+    @IBOutlet weak var errorImageView: UIImageView!
+    @IBOutlet weak var TempreaturaCLabel: UILabel!
+    @IBOutlet weak var Descripcion: UILabel!
+    @IBOutlet weak var Minima: UILabel!
+    @IBOutlet weak var Maxima: UILabel!
+    @IBOutlet weak var Humedad: UILabel!
+    @IBOutlet weak var centigrados1: UILabel!
+    @IBOutlet weak var centigrados2: UILabel!
+    @IBOutlet weak var porcentaje: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         climaManager.delegado = self
         buscarTextField.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action:     #selector(tapGestureHandler))
+        view.addGestureRecognizer(tapGesture)
+        
+    }
+    
+    @objc func tapGestureHandler() {
+        buscarTextField.endEditing(true)
     }
     
     //para programar el boton del teclado

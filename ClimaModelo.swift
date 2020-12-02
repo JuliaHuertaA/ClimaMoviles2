@@ -15,18 +15,17 @@ struct ClimaModelo {
     let temperaturaCelcius: Double
     let TemperaturaMin : Double
     let TemperaturaMax : Double
-    
-    
+    let Humedad : Int
     var condicionClima: String{
         switch condicionID {
         case 200...232:
-            return "tormenta"
+            return "tormenta.png"
         case 700...781:
-            return "nublado"
+            return "nublado.png"
         case 800:
-            return "sol"
+            return "sol.png"
         default:
-            return "41wkG24yDkL"
+            return "41wkG24yDkL.png"
         }
     }
     var temperaturaDecimal: String {
@@ -37,6 +36,9 @@ struct ClimaModelo {
     }
     var temperaturaMaxima: String {
         return String(format:"%1.f",TemperaturaMax)
+    }
+    var humedad: String {
+        return String(Humedad)
     }
     
 }

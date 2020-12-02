@@ -9,6 +9,8 @@
 import Foundation
 protocol ClimaManagerDelegate {
     func actualizarClima(clima:ClimaModelo)
+    
+    func huboError(cualError : Error)
 }
 
 struct ClimaManager{
@@ -26,6 +28,7 @@ struct ClimaManager{
             //let tarea = session.dataTask(with: url, completionHandler: handle(data:respuesta:error:))
             let tarea = session.dataTask(with: url){ (data, respuesta, error) in
                 if error != nil {
+                    self.delegado?.huboError(cualError : error!)
                     print(error!)
                     return
                 }
@@ -49,8 +52,9 @@ struct ClimaManager{
             let temperatura = dataDecodificada.main.temp
             let tempMin = dataDecodificada.main.temp_min
             let tempMax = dataDecodificada.main.temp_min
+            let humedad = dataDecodificada.main.humidity
        
-            let ObjClima = ClimaModelo(condicionID: id, nombreCiudad: nombre, descripcionClima: descripcion, temperaturaCelcius: temperatura, TemperaturaMin : tempMin, TemperaturaMax : tempMax)
+            let ObjClima = ClimaModelo(condicionID: id, nombreCiudad: nombre, descripcionClima: descripcion, temperaturaCelcius: temperatura, TemperaturaMin : tempMin, TemperaturaMax : tempMax, Humedad : humedad)
            // print(dataDecodificada.name)
            // print(dataDecodificada.cod)
             print(dataDecodificada.main.temp)
@@ -62,6 +66,7 @@ struct ClimaManager{
            // print(dataDecodificada.coord.lon)
             return ObjClima
         }catch{
+            self.delegado?.huboError(cualError : error)
             print(error)
             return nil
         }

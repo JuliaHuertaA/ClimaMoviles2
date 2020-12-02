@@ -114,8 +114,8 @@
                                     <constraint firstItem="YY0-19-Stb" firstAttribute="leading" secondItem="ldY-bm-LyX" secondAttribute="trailing" constant="34" id="zR3-4j-xlt"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Morelia, Michoacán" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZM-bb-Fjp">
-                                <rect key="frame" x="45" y="401" width="324" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Morelia, Michoacán" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZM-bb-Fjp">
+                                <rect key="frame" x="45" y="421" width="324" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -204,6 +204,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhq-0x-9rC">
+                                <rect key="frame" x="177" y="341" width="60" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -227,12 +231,21 @@
                     </view>
                     <connections>
                         <outlet property="DescLabel" destination="6WV-Kq-K5c" id="2af-1C-hbQ"/>
+                        <outlet property="Descripcion" destination="QaM-Yx-Z9U" id="yzV-9W-19p"/>
+                        <outlet property="Humedad" destination="SXz-0f-2vn" id="sb5-Xx-cnJ"/>
                         <outlet property="HumedadLabel" destination="OZO-l5-qSs" id="GVf-jQ-Tlc"/>
+                        <outlet property="Maxima" destination="AX0-2C-oK2" id="2dH-sH-fQi"/>
+                        <outlet property="Minima" destination="bM2-WA-bfx" id="pi6-AM-pyB"/>
                         <outlet property="TempMaxLabel" destination="dTy-5v-oXr" id="A4z-sW-NoY"/>
                         <outlet property="TempMinLabel" destination="3pe-mc-XeW" id="UoP-LF-KLw"/>
+                        <outlet property="TempreaturaCLabel" destination="7Gx-DZ-XYr" id="S6u-Hh-60o"/>
                         <outlet property="buscarTextField" destination="LLB-3O-HvZ" id="Tzw-gE-huI"/>
+                        <outlet property="centigrados1" destination="2LR-m0-278" id="OdJ-HE-c95"/>
+                        <outlet property="centigrados2" destination="cHe-vr-WEg" id="4Nt-4m-a2k"/>
                         <outlet property="ciudadLabel" destination="DZM-bb-Fjp" id="zSZ-2y-eZp"/>
                         <outlet property="climaImageView" destination="ldY-bm-LyX" id="SuU-TU-epR"/>
+                        <outlet property="errorImageView" destination="vhq-0x-9rC" id="YTf-PL-keY"/>
+                        <outlet property="porcentaje" destination="4Of-1e-U5S" id="rkA-9r-66X"/>
                         <outlet property="temperaturaLabel" destination="YY0-19-Stb" id="FFu-u5-Vey"/>
                     </connections>
                 </viewController>
