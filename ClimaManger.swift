@@ -61,15 +61,7 @@ struct ClimaManager{
             let humedad = dataDecodificada.main.humidity
        
             let ObjClima = ClimaModelo(condicionID: id, nombreCiudad: nombre, descripcionClima: descripcion, temperaturaCelcius: temperatura, TemperaturaMin : tempMin, TemperaturaMax : tempMax, Humedad : humedad)
-           // print(dataDecodificada.name)
-           // print(dataDecodificada.cod)
-            print(dataDecodificada.main.temp)
-           // print(dataDecodificada.main.humidity)
-           // print(dataDecodificada.main.temp_min)
-           // print(dataDecodificada.main.temp_max)
-           // print(dataDecodificada.weather[0].description)
-           // print(dataDecodificada.coord.lat)
-           // print(dataDecodificada.coord.lon)
+
             return ObjClima
         }catch{
             self.delegado?.huboError(cualError : error)

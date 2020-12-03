@@ -20,10 +20,16 @@ struct ClimaModelo {
         switch condicionID {
         case 200...232:
             return "tormenta.png"
-        case 700...781:
-            return "nublado.png"
+        case 300...531:
+            return "lluvia.png"
+        case 600...622:
+            return "nieve.png"
+        case 701...781:
+            return "tornado.png"
         case 800:
             return "sol.png"
+        case 801...804:
+            return "nube-removebg-preview.png"
         default:
             return "41wkG24yDkL.png"
         }

@@ -13,9 +13,14 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
     var locationManager = CLLocationManager()
     
     func huboError(cualError : Error){
-        print(cualError.localizedDescription)
+        if cualError.localizedDescription == "The data couldn’t be read because it is missing."{
+            DispatchQueue.main.async {
+                self.ciudadLabel.text = "Ingresa una ciudad"
+            }
+  
+        }
+        
         DispatchQueue.main.async {
-            self.ciudadLabel.text = cualError.localizedDescription
             self.temperaturaLabel.text = ""
             self.DescLabel.text = ""
             self.TempMinLabel.text = ""
