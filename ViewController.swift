@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegate, CLLocationManagerDelegate {
+    var locationManager = CLLocationManager()
     
     func huboError(cualError : Error){
         print(cualError.localizedDescription)
@@ -42,7 +44,8 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
         print(clima.temperaturaMinima)
         
     
-        DispatchQueue.main.async {            self.Descripcion.text = "Descripción:"
+        DispatchQueue.main.async {
+            self.Descripcion.text = "Descripción:"
             self.Minima.text = "Mínima:"
             self.Maxima.text = "Máxima:"
             self.Humedad.text = "Humedad:"
@@ -51,6 +54,7 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
             self.porcentaje.text = "%"
             self.TempreaturaCLabel.text = "°C"
             
+            self.ciudadLabel.text = clima.nombreCiudad
             self.temperaturaLabel.text = clima.temperaturaDecimal
             self.DescLabel.text = clima.descripcionClima
             self.TempMinLabel.text = clima.temperaturaMinima
@@ -85,11 +89,28 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
     @IBOutlet weak var porcentaje: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization() //Solicita el permiso
+        locationManager.requestLocation()
+        
         climaManager.delegado = self
         buscarTextField.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action:     #selector(tapGestureHandler))
         view.addGestureRecognizer(tapGesture)
         
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        print("Se obtuvo la ubicacion")
+        if let ubicaciones = locations.last{
+            let latitud = ubicaciones.coordinate.latitude
+            let longitud = ubicaciones.coordinate.longitude
+            climaManager.fetchClima(lat: latitud, long: longitud)
+        }
+    
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
     
     @objc func tapGestureHandler() {
@@ -115,6 +136,10 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
     @IBAction func buscarButton(_ sender: UIButton) {
         ciudadLabel.text = buscarTextField.text
         climaManager.fetchClima(nombreCiudad: buscarTextField.text!)
+    }
+    
+    @IBAction func obtenerUbicacion(_ sender: UIButton) {
+        locationManager.requestLocation()
     }
 }
 

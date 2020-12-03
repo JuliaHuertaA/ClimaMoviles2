@@ -22,6 +22,12 @@ struct ClimaManager{
         print(urlString)
         realizarSolicitd(urlString: urlString)
     }
+    func fetchClima(lat: Double, long:Double ){
+        let urlString = "\(climaUrl)&lat=\(lat)&lon=\(long)"
+        print(urlString)
+        realizarSolicitd(urlString: urlString)
+    }
+    
     func realizarSolicitd(urlString:String){
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
